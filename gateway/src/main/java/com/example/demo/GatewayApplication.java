@@ -29,11 +29,11 @@ public class GatewayApplication {
 						f -> f.circuitBreaker(config -> config
 								.setName("mycmd")
 								.setFallbackUri("forward:/fallback")))
-						.uri("lb://uni_registration"))
+						.uri("lb://students"))
 				.route(p -> p.path("/students/**")
 						.uri("lb://uni_registration"))
 				.route(p -> p.path("/financial-statement/**")
-						.uri("lb://finance_service"))
+						.uri("lb://financial-statement"))
 				.build();
 	}
 

@@ -123,11 +123,11 @@ public class StudentController {
 	}
 
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@DeleteMapping("/students/{id}/financial-statement")
-	private void delete(@PathVariable Long id) {
-		/*if() {
-			
-		}*/
-		this.repository.deleteById(id);
+	@DeleteMapping("/students/{id}")
+	ResponseEntity<?> deleteStudent(@PathVariable Long id) {
+
+	  repository.deleteById(id);
+
+	  return ResponseEntity.noContent().build();
 	}
 }

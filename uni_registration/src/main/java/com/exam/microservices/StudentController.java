@@ -57,7 +57,7 @@ public class StudentController {
 	//e) delete student, you can only delete a student if they paid all the tuition
 	
 //create student
-	@PostMapping("/students")
+/*	@PostMapping("/students")
 	private ResponseEntity<?> newStudent( @RequestBody Student entity) {
 
 		EntityModel<Student> entityModel = assembler.toModel(repository.save(entity));
@@ -65,7 +65,17 @@ public class StudentController {
 		return ResponseEntity //
 				.created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri()) //
 				.body(entityModel);
+	}*/
+	@PostMapping("/students")
+	private ResponseEntity<?> newOrders(@RequestBody Student entity) {
+
+		EntityModel<Student> entityModel = assembler.toModel(repository.save(entity));
+
+		return ResponseEntity //
+				.created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri()) //
+				.body(entityModel);
 	}
+
 
 	// update student
 
@@ -124,10 +134,10 @@ public class StudentController {
 
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/students/{id}")
-	private void delete(@PathVariable Long id) {
-	/*	if(id==) {
-			
-		}*/
-		this.repository.deleteById(id);
+	ResponseEntity<?> deleteStudent(@PathVariable Long id) {
+
+	  repository.deleteById(id);
+
+	  return ResponseEntity.noContent().build();
 	}
 }
