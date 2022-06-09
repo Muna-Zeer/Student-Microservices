@@ -25,7 +25,7 @@ public class GatewayApplication {
 	public RouteLocator myRoutes(RouteLocatorBuilder builder) {
 		return builder.routes()
 			
-				.route(p -> p.path("/Students/**").filters(
+				.route(p -> p.path("/students/**").filters(
 						f -> f.circuitBreaker(config -> config
 								.setName("mycmd")
 								.setFallbackUri("forward:/fallback")))
